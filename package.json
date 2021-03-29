@@ -1,0 +1,31 @@
+{
+  "name": "coa-wx-work",
+  "version": "0.0.0",
+  "description": "简洁版企业微信服务端SDK for Node.js",
+  "keywords": [
+    "coa",
+    "coajs",
+    "wx-work"
+  ],
+  "license": "MIT",
+  "author": "Aex",
+  "homepage": "https://github.com/coajs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coajs/coa-wx-work.git"
+  },
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "rm -rf dist && tsc && cp package.json *.md dist && rm -rf dist/test",
+    "publish-prerelease": "yarn build && yarn version --prerelease && cp package.json *.md dist && cd dist && rm -rf test && npm publish",
+    "test": "node dist/test"
+  },
+  "dependencies": {
+    "coa-error": "^1.1.3",
+    "coa-helper": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.35",
+    "typescript": "^4.2.3"
+  }
+}
