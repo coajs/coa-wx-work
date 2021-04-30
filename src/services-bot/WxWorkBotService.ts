@@ -18,8 +18,8 @@ export class WxWorkBotService {
     return await this.send(data)
   }
 
-  async json (env: string, data: any) {
-    return await this.text(`${env} ${dayjs().format('YYYY-MM-DD HH:mm:ss')} \n${JSON.stringify(data, undefined, 2)}`)
+  async json (title: string, env: string, data: any) {
+    return await this.text(`${title} ${env} ${dayjs().format('YYYY-MM-DD HH:mm:ss')} \n${JSON.stringify(data, undefined, 2)}`)
   }
 
   async markdown (markdown: WxWorkMarkdown) {
