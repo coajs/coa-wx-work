@@ -17,15 +17,25 @@
   "scripts": {
     "dev": "tsc -w",
     "build": "rm -rf dist && tsc && cp package.json *.md dist && rm -rf dist/test",
-    "publish-prerelease": "yarn build && yarn version --prerelease && cp package.json *.md dist && cd dist && rm -rf test && npm publish",
-    "test": "node dist/test"
+    "lint": "eslint .",
+    "prettier": "prettier -w .",
+    "test": "node dist/test",
+    "sync": "curl -X PUT 'https://npm.taobao.org/sync/coa-wx-work?sync_upstream=true'"
   },
   "dependencies": {
-    "coa-error": "^1.1.3",
-    "coa-helper": "^1.1.1"
+    "coa-error": "^1.5.2",
+    "coa-helper": "^1.2.1"
   },
   "devDependencies": {
-    "@types/node": "^14.14.35",
-    "typescript": "^4.2.3"
+    "@types/node": "^15.6.1",
+    "@typescript-eslint/eslint-plugin": "^4.26.0",
+    "eslint": "^7.27.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-standard-with-typescript": "^20.0.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "prettier": "^2.3.0",
+    "typescript": "^4.3.2"
   }
 }
