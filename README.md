@@ -5,7 +5,7 @@
 [![npm downloads](https://img.shields.io/npm/dm/coa-wx-work.svg?style=flat-square)](http://npm-stat.com/charts.html?package=coa-wx-work)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/coajs/coa-wx-work/pulls)
 
-简洁的企业微信SDK for Node.js
+简洁的企业微信 SDK for Node.js
 
 ## 特点
 
@@ -13,7 +13,7 @@
 
 - 覆盖了绝大多数使用场景
 - 统一了异步表现形式，全部返回 Promise
-- 内置类型引用，无需额外查看文档，开箱即用，IDE友好
+- 内置类型引用，无需额外查看文档，开箱即用，IDE 友好
 
 ## 快速开始
 
@@ -35,7 +35,7 @@ const bin = new WxWorkBin()
 const agent = {
   corpId: 'wwc2bf51eeeeeee825b1',
   agentId: '1000001',
-  secret: 'J1jxD5X3eXXXXXXXXXXXXIAHvawDRU4'
+  secret: 'J1jxD5X3eXXXXXXXXXXXXIAHvawDRU4',
 }
 
 // 成员类服务实例
@@ -81,8 +81,6 @@ await botService.text('文本消息')
 await botService.image('data of base64')
 
 // 发送markdown消息
-const content = new WxWorkMarkdown()
-  .header3('主题')
-  .text('主体内容')
+const content = new WxWorkMarkdown().header3('主题').text('主体内容')
 await botService.markdown(content)
 ```

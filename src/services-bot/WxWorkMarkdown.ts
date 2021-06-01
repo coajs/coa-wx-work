@@ -1,73 +1,71 @@
 export class WxWorkMarkdown {
   private data = ''
 
-  text (text: string, color?: 'info' | 'comment' | 'warning') {
-    if (!color)
-      this.data += text
-    else
-      this.data += `<font color="${color}">${text}</font>`
+  text(text: string, color?: 'info' | 'comment' | 'warning') {
+    if (!color) this.data += text
+    else this.data += `<font color="${color}">${text}</font>`
     return this
   }
 
-  header3 (text: string) {
+  header3(text: string) {
     return this.text(`### ${text}`)
   }
 
-  header4 (text: string) {
+  header4(text: string) {
     return this.text(`#### ${text}`)
   }
 
-  header5 (text: string) {
+  header5(text: string) {
     return this.text(`##### ${text}`)
   }
 
-  header6 (text: string) {
+  header6(text: string) {
     return this.text(`###### ${text}`)
   }
 
-  red (text: string) {
+  red(text: string) {
     return this.text(text, 'warning')
   }
 
-  green (text: string) {
+  green(text: string) {
     return this.text(text, 'info')
   }
 
-  gray (text: string) {
+  gray(text: string) {
     return this.text(text, 'comment')
   }
 
-  bold (text: string) {
+  bold(text: string) {
     return this.text(`**${text}**`)
   }
 
-  link (title: string, url: string) {
+  link(title: string, url: string) {
     return this.text(`[${title}](${url})`)
   }
 
-  commentText (text: string) {
+  commentText(text: string) {
     return this.text(text, 'comment')
   }
 
-  warningText (text: string) {
+  warningText(text: string) {
     return this.text(text, 'warning')
   }
 
-  infoText (text: string) {
+  infoText(text: string) {
     return this.text(text, 'info')
   }
 
-  br () {
+  br() {
     this.data += '\n'
     return this
   }
 
-  quote () {
+  quote() {
     this.data += '> '
     return this
   }
 
-  value () {
+  value() {
     return this.data
   }
 }

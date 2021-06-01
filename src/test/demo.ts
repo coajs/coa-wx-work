@@ -8,7 +8,7 @@ const bin = new WxWorkBin()
 const agent = {
   corpId: 'wwc2bf51eeeeeee825b1',
   agentId: '1000001',
-  secret: 'J1jxD5X3eXXXXXXXXXXXXIAHvawDRU4'
+  secret: 'J1jxD5X3eXXXXXXXXXXXXIAHvawDRU4',
 }
 // 成员类服务
 const memberService = new WxWorkMemberService(bin, agent)

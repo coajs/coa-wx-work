@@ -14,7 +14,5 @@ await botService.text('文本消息')
 await botService.image('data of base64')
 
 // 发送markdown消息
-const content = new WxWorkMarkdown()
-  .header3('主题')
-  .text('主体内容')
+const content = new WxWorkMarkdown().header3('主题').text('主体内容')
 await botService.markdown(content)
