@@ -1,5 +1,7 @@
 import { CoaError } from 'coa-error'
 import { $, axios, Axios, _ } from 'coa-helper'
+import { readFileSync } from 'fs'
+import { basename } from 'path'
 import { WxWork } from '../typings'
 import { WxWorkStorage } from './WxWorkStorage'
 
@@ -30,5 +32,19 @@ export class WxWorkBin {
       if (!allow.includes(code)) CoaError.throw('WxWork.Error.' + info.errcode, message)
     }
     return $.camelCaseKeys(info)
+  }
+
+  parseUploadFile(filepath: string, key: string) {
+    const BREAK = '\r\n'
+    const BOUNDARY = '----------------------------' + Math.random()
+
+    const filename = basename(filepath)
+    const prefix = `--${BOUNDARY}${BREAK}Content-Disposition: form-data; name="${key}"; filename="${filename}"${BREAK}Content-Type: application/octet-stream${BREAK}${BREAK}`
+    const suffix = `${BREAK}--${BOUNDARY}--${BREAK}`
+
+    const headers = { 'content-type': 'multipart/form-data; boundary=' + BOUNDARY }
+    const data = Buffer.concat([Buffer.from(prefix), readFileSync(filepath), Buffer.from(suffix)])
+
+    return { headers, data }
   }
 }

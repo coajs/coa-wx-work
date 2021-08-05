@@ -15,7 +15,7 @@
     "url": "https://github.com/coajs/coa-wx-work.git"
   },
   "scripts": {
-    "dev": "tsc -w",
+    "tsc": "tsc -w",
     "build": "rm -rf dist && tsc && cp package.json *.md dist && rm -rf dist/test",
     "lint": "eslint .",
     "prettier": "prettier -w .",

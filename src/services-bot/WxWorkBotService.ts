@@ -36,6 +36,16 @@ export class WxWorkBotService {
     return await this.send(data)
   }
 
+  async file(media_id: string) {
+    const data = { msgtype: 'file', file: { media_id } }
+    return await this.send(data)
+  }
+
+  async upload(filepath: string): Promise<{ type: string; mediaId: string; createdAt: string }> {
+    const { data, headers } = this.bin.parseUploadFile(filepath, 'media')
+    return await this.bin.post('/cgi-bin/webhook/upload_media', data, { key: this.key, type: 'file' }, { headers })
+  }
+
   protected async send(data: any) {
     return await this.bin.post('/cgi-bin/webhook/send', data, { key: this.key })
   }
