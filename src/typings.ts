@@ -1,5 +1,3 @@
-const agent = { agentId: '', corpId: '', secret: '' }
-
 const token = { token: '', expire: 1 }
 
 const jsapiTicket = { ticket: '', expire: 1 }
@@ -219,9 +217,16 @@ export declare namespace WxWork {
     [index: string]: T
   }
 
+  interface Agent {
+    agentId: string
+    corpId: string
+    secret: string
+    token?: string
+    aesKey?: string
+  }
+
   type Token = typeof token
   type JsapiTicket = typeof jsapiTicket
-  type Agent = typeof agent
   type UserList = typeof resultUserList
   type UserInfoByCode = typeof resultUserInfoByCode
   type NormalResponse = typeof normalResponse

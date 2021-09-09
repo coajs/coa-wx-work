@@ -1,3 +1,4 @@
+import { CoaError } from 'coa-error'
 import { _ } from 'coa-helper'
 import { WxWork } from '../typings'
 import { WxWorkBin } from './WxWorkBin'
@@ -9,6 +10,19 @@ export class WxWorkServiceAuth extends WxWorkService {
   constructor(bin: WxWorkBin, agent: WxWork.Agent) {
     super(bin)
     this.agent = agent
+  }
+
+  // 上传临时素材
+  async uploadMedia(filepath: string, type: 'image' | 'voice' | 'video' | 'file'): Promise<{ type: string; mediaId: string; createdAt: string }> {
+    const { data, headers } = this.bin.parseUploadFile(filepath, 'media')
+    const access_token = await this.getToken()
+    return await this.bin.post('/cgi-bin/media/upload', data, { access_token, type }, { headers })
+  }
+
+  // 解密
+  async decrypt(encrypted: string) {
+    const aesKey = this.agent.aesKey ?? CoaError.message('WxWork.Missing', '缺少AesKey，无法解析数据')
+    return await this.bin.decrypt(encrypted, aesKey)
   }
 
   // 获取Token

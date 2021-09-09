@@ -24,7 +24,8 @@
   },
   "dependencies": {
     "coa-error": "^1.5.2",
-    "coa-helper": "^1.2.1"
+    "coa-helper": "^1.2.1",
+    "coa-xml": "^1.1.0"
   },
   "devDependencies": {
     "@types/node": "^15.6.1",
