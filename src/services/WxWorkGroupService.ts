@@ -1,7 +1,7 @@
+import { WxWorkServiceAuth } from '../base/WxWorkServiceAuth'
 import { WxWork } from '../typings'
-import { WxWorkAuthServiceBase } from './WxWorkAuthServiceBase'
 
-export class WxWorkGroupService extends WxWorkAuthServiceBase {
+export class WxWorkGroupService extends WxWorkServiceAuth {
   // 创建群聊会话 https://work.weixin.qq.com/api/doc/90000/90135/90245
   async create(name: string, owner: string, userList: string[], chatId = '') {
     return (await this.bin.post(

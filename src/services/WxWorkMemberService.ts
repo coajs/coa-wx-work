@@ -1,8 +1,8 @@
 import { $, _ } from 'coa-helper'
-import { WxWorkAuthServiceBase } from '../services/WxWorkAuthServiceBase'
+import { WxWorkServiceAuth } from '../base/WxWorkServiceAuth'
 import { WxWork } from '../typings'
 
-export class WxWorkMemberService extends WxWorkAuthServiceBase {
+export class WxWorkMemberService extends WxWorkServiceAuth {
   // 创建成员 https://work.weixin.qq.com/api/doc/90000/90135/90195
   async create(user: WxWork.User) {
     return (await this.bin.post(

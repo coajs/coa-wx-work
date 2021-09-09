@@ -1,13 +1,12 @@
+// base
+export * from './base/WxWorkServiceAuth'
+export * from './base/WxWorkBin'
 // libs
-export { WxWorkBin } from './libs/WxWorkBin'
-export { WxWorkStorage } from './libs/WxWorkStorage'
-
+export * from './libs/WxWorkMarkdown'
+export * from './libs/WxWorkStorage'
 // services
-export { WxWorkDepartmentService } from './services/WxWorkDepartmentService'
-export { WxWorkGroupService } from './services/WxWorkGroupService'
-export { WxWorkMemberService } from './services/WxWorkMemberService'
-export { WxWorkMessageService } from './services/WxWorkMessageService'
-
-// services-bot
-export { WxWorkBotService } from './services-bot/WxWorkBotService'
-export { WxWorkMarkdown } from './services-bot/WxWorkMarkdown'
+export * from './services/WxWorkBotService'
+export * from './services/WxWorkDepartmentService'
+export * from './services/WxWorkGroupService'
+export * from './services/WxWorkMemberService'
+export * from './services/WxWorkMessageService'

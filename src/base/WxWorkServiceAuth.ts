@@ -1,13 +1,13 @@
 import { _ } from 'coa-helper'
-import { WxWorkBin } from '../libs/WxWorkBin'
 import { WxWork } from '../typings'
+import { WxWorkBin } from './WxWorkBin'
+import { WxWorkService } from './WxWorkService'
 
-export class WxWorkAuthServiceBase {
-  readonly bin: WxWorkBin
+export class WxWorkServiceAuth extends WxWorkService {
   readonly agent: WxWork.Agent
 
   constructor(bin: WxWorkBin, agent: WxWork.Agent) {
-    this.bin = bin
+    super(bin)
     this.agent = agent
   }
 

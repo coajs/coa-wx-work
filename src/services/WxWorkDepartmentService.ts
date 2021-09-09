@@ -1,8 +1,8 @@
 import { $, _ } from 'coa-helper'
+import { WxWorkServiceAuth } from '../base/WxWorkServiceAuth'
 import { WxWork } from '../typings'
-import { WxWorkAuthServiceBase } from './WxWorkAuthServiceBase'
 
-export class WxWorkDepartmentService extends WxWorkAuthServiceBase {
+export class WxWorkDepartmentService extends WxWorkServiceAuth {
   // 创建部门 https://work.weixin.qq.com/api/doc/90000/90135/90205
   async create({ id = 0, name = '', nameEn = '', parentid = 0, order = 0 } = {}) {
     const params = _.pickBy({ id, name, name_en: nameEn, parentid, order })

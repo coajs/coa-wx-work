@@ -2,8 +2,8 @@ import { CoaError } from 'coa-error'
 import { $, axios, Axios, _ } from 'coa-helper'
 import { readFileSync } from 'fs'
 import { basename } from 'path'
+import { WxWorkStorage } from '../libs/WxWorkStorage'
 import { WxWork } from '../typings'
-import { WxWorkStorage } from './WxWorkStorage'
 
 const baseURL = 'https://qyapi.weixin.qq.com'
 

@@ -1,14 +1,14 @@
 import { dayjs } from 'coa-helper'
-import { WxWorkBin } from '../libs/WxWorkBin'
-import { WxWorkMarkdown } from './WxWorkMarkdown'
+import { WxWorkBin } from '../base/WxWorkBin'
+import { WxWorkService } from '../base/WxWorkService'
+import { WxWorkMarkdown } from '../libs/WxWorkMarkdown'
 
 // https://work.weixin.qq.com/api/doc/90000/90136/91770
-export class WxWorkBotService {
-  readonly bin: WxWorkBin
+export class WxWorkBotService extends WxWorkService {
   readonly key: string
 
   constructor(bin: WxWorkBin, key: string) {
-    this.bin = bin
+    super(bin)
     this.key = key
   }
 
