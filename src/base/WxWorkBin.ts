@@ -17,12 +17,12 @@ export class WxWorkBin {
   }
 
   async get(url: string, params: WxWork.Dic = {}, allow: number[] = []) {
-    const res = await axios(url, { params, baseURL })
+    const res = await axios(url, { params, baseURL, proxy: false })
     return this.wxResponseResult(res, allow)
   }
 
   async post(url: string, data: WxWork.Dic, params: WxWork.Dic = {}, config: Axios.AxiosRequestConfig = {}, allow: number[] = []) {
-    const res = await axios(url, { params, data, baseURL, method: 'POST', ...config })
+    const res = await axios(url, { params, data, baseURL, method: 'POST', proxy: false, ...config })
     return this.wxResponseResult(res, allow)
   }
 
