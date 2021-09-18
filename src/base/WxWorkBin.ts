@@ -1,7 +1,5 @@
 import { CoaError } from 'coa-error'
 import { $, axios, Axios, _ } from 'coa-helper'
-import { xml } from 'coa-xml'
-import { createDecipheriv } from 'crypto'
 import { readFileSync } from 'fs'
 import { basename } from 'path'
 import { WxWorkStorage } from '../libs/WxWorkStorage'
@@ -48,26 +46,5 @@ export class WxWorkBin {
     const data = Buffer.concat([Buffer.from(prefix), readFileSync(filepath), Buffer.from(suffix)])
 
     return { headers, data }
-  }
-
-  async decrypt(encryptedData: string, aesKey: string) {
-    const key = Buffer.from(aesKey, 'base64')
-    const iv = key.slice(0, 16)
-    let result = {} as any
-
-    try {
-      const decipher = createDecipheriv('aes-256-cbc', key, iv)
-      // 设置自动 padding 为 true，删除填充补位
-      decipher.setAutoPadding(true)
-      let decoded = decipher.update(encryptedData, 'base64', 'utf8')
-      try {
-        decoded += decipher.final('utf8')
-      } catch (e) {}
-      decoded = decoded.replace(/[\s\S]*(<xml>[\s\S]*<\/xml>)[\s\S]*/, '$1')
-      result = await xml.decode(decoded)
-    } catch (e) {
-      console.error('微信解密失败', e)
-    }
-    return result
   }
 }

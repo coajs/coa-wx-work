@@ -23,6 +23,7 @@
     "sync": "curl -X PUT 'https://npm.taobao.org/sync/coa-wx-work?sync_upstream=true'"
   },
   "dependencies": {
+    "@wecom/crypto": "^1.0.0",
     "coa-error": "^1.5.2",
     "coa-helper": "^1.2.1",
     "coa-xml": "^1.1.0"

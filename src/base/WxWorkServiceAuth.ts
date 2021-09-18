@@ -1,5 +1,7 @@
+import { decrypt } from '@wecom/crypto'
 import { CoaError } from 'coa-error'
 import { _ } from 'coa-helper'
+import { xml } from 'coa-xml'
 import { WxWork } from '../typings'
 import { WxWorkBin } from './WxWorkBin'
 import { WxWorkService } from './WxWorkService'
@@ -20,9 +22,32 @@ export class WxWorkServiceAuth extends WxWorkService {
   }
 
   // 解密
-  async decrypt(encrypted: string) {
+  decrypt(encrypted: string) {
     const aesKey = this.agent.aesKey ?? CoaError.message('WxWork.Missing', '缺少AesKey，无法解析数据')
-    return await this.bin.decrypt(encrypted, aesKey)
+    const { message } = decrypt(aesKey, encrypted)
+    return message
+  }
+
+  // 解密XML
+  async decryptXml(encrypted: string) {
+    const data = this.decrypt(encrypted)
+    try {
+      return await xml.decode(data)
+    } catch (e) {
+      console.error('微信解密失败', e)
+      return undefined
+    }
+  }
+
+  // 解密JSON
+  async decryptJson(encrypted: string) {
+    const data = this.decrypt(encrypted)
+    try {
+      return JSON.parse(data)
+    } catch (e) {
+      console.error('微信解密失败', e)
+      return undefined
+    }
   }
 
   // 获取Token

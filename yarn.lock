@@ -169,6 +169,11 @@
     "@typescript-eslint/types" "4.31.0"
     eslint-visitor-keys "^2.0.0"
 
+"@wecom/crypto@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@wecom/crypto/-/crypto-1.0.0.tgz#68c84d41da9e591a50b756ea9236f29819360a8b"
+  integrity sha512-Rv+BX25s6V4yvpXoGgtishof1Kij2hfmM5VUVEkwRjCtqmI47t+xj48QEKulzJTMt7O0Y2uuZwshPxkIjb6/zg==
+
 acorn-jsx@^5.3.1:
   version "5.3.2"
   resolved "https://registry.yarnpkg.com/acorn-jsx/-/acorn-jsx-5.3.2.tgz#7ed5bb55908b3b2f1bc55c6af1653bada7f07937"
