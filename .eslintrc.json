@@ -1,22 +1,14 @@
 {
-  "env": {
-    "es2021": true,
-    "mocha": true,
-    "node": true
-  },
-  "extends": ["standard-with-typescript", "prettier"],
-  "parserOptions": {
-    "ecmaVersion": 2021,
-    "project": "tsconfig.json",
-    "sourceType": "module"
-  },
-  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
   "rules": {
-    "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/naming-convention": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-namespace": "off",
-    "@typescript-eslint/restrict-plus-operands": "off",
-    "@typescript-eslint/restrict-template-expressions": "off",
-    "@typescript-eslint/strict-boolean-expressions": "off"
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off"
   }
 }

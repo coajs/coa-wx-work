@@ -4,7 +4,7 @@ interface ResponseError {
   errcode: number
   errmsg: string
 }
-type PromiseResponse<T = {}> = Promise<T & ResponseError>
+type PromiseResponse<T = Record<string, any>> = Promise<T & ResponseError>
 
 interface Account {
   openKfid: string
