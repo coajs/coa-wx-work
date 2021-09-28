@@ -19,8 +19,21 @@ export class WxWorkBin {
     return this.wxResponseResult(res, allow)
   }
 
-  async post(url: string, data: WxWork.Dic, params: WxWork.Dic = {}, config: Axios.AxiosRequestConfig = {}, allow: number[] = []) {
-    const res = await axios(url, { params, data, baseURL, method: 'POST', proxy: false, ...config })
+  async post(
+    url: string,
+    data: WxWork.Dic,
+    params: WxWork.Dic = {},
+    config: Axios.AxiosRequestConfig = {},
+    allow: number[] = []
+  ) {
+    const res = await axios(url, {
+      params,
+      data,
+      baseURL,
+      method: 'POST',
+      proxy: false,
+      ...config,
+    })
     return this.wxResponseResult(res, allow)
   }
 
@@ -29,7 +42,8 @@ export class WxWorkBin {
     if (info.errcode) {
       const message = _.toString(info.errmsg) || '企业微信服务返回错误'
       const code = _.toNumber(info.errcode) || 0
-      if (!allow.includes(code)) CoaError.throw('WxWork.Error.' + info.errcode, message)
+      if (!allow.includes(code))
+        CoaError.throw('WxWork.Error.' + info.errcode, message)
     }
     return $.camelCaseKeys(info)
   }
@@ -42,8 +56,14 @@ export class WxWorkBin {
     const prefix = `--${BOUNDARY}${BREAK}Content-Disposition: form-data; name="${key}"; filename="${filename}"${BREAK}Content-Type: application/octet-stream${BREAK}${BREAK}`
     const suffix = `${BREAK}--${BOUNDARY}--${BREAK}`
 
-    const headers = { 'content-type': 'multipart/form-data; boundary=' + BOUNDARY }
-    const data = Buffer.concat([Buffer.from(prefix), readFileSync(filepath), Buffer.from(suffix)])
+    const headers = {
+      'content-type': 'multipart/form-data; boundary=' + BOUNDARY,
+    }
+    const data = Buffer.concat([
+      Buffer.from(prefix),
+      readFileSync(filepath),
+      Buffer.from(suffix),
+    ])
 
     return { headers, data }
   }

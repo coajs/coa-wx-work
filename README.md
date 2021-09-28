@@ -26,7 +26,11 @@ yarn add coa-wx-work
 ### 使用
 
 ```typescript
-import { WxWorkBin, WxWorkDepartmentService, WxWorkMemberService } from 'coa-wx-work'
+import {
+  WxWorkBin,
+  WxWorkDepartmentService,
+  WxWorkMemberService,
+} from 'coa-wx-work'
 
 // Bin实例，任何服务都必须依赖此实例
 const bin = new WxWorkBin()

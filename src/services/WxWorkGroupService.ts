@@ -12,11 +12,23 @@ export class WxWorkGroupService extends WxWorkServiceAuth {
   }
 
   // 修改群聊会话 https://work.weixin.qq.com/api/doc/90000/90135/90246
-  async update(chatId: string, name: string, owner: string, addUserList: string[], delUserList: string[]) {
+  async update(
+    chatId: string,
+    name: string,
+    owner: string,
+    addUserList: string[],
+    delUserList: string[]
+  ) {
     const param = { access_token: await this.getToken() }
     return (await this.bin.post(
       '/cgi-bin/appchat/update',
-      { chatid: chatId, name, owner, add_user_list: addUserList, del_user_list: delUserList },
+      {
+        chatid: chatId,
+        name,
+        owner,
+        add_user_list: addUserList,
+        del_user_list: delUserList,
+      },
       param
     )) as WxWork.NormalResponse
   }
@@ -24,7 +36,13 @@ export class WxWorkGroupService extends WxWorkServiceAuth {
   // 获取群聊会话 https://work.weixin.qq.com/api/doc/90000/90135/90247
   async get(name: string, owner: string, userList: string[], chatId = '') {
     const access_token = await this.getToken()
-    return (await this.bin.get('/cgi-bin/appchat/create', { access_token, name, owner, userlist: userList, chatid: chatId })) as WxWork.GetGroupResponse
+    return (await this.bin.get('/cgi-bin/appchat/create', {
+      access_token,
+      name,
+      owner,
+      userlist: userList,
+      chatid: chatId,
+    })) as WxWork.GetGroupResponse
   }
 
   // 发送纯文本消息
@@ -36,6 +54,10 @@ export class WxWorkGroupService extends WxWorkServiceAuth {
       text: { content },
       safe,
     }
-    return (await this.bin.post('cgi-bin/appchat/send', { ...args }, param)) as WxWork.NormalResponse
+    return (await this.bin.post(
+      'cgi-bin/appchat/send',
+      { ...args },
+      param
+    )) as WxWork.NormalResponse
   }
 }

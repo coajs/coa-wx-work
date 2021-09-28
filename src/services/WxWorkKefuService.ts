@@ -93,9 +93,16 @@ export class WxWorkKefuService extends WxWorkServiceAuth {
    * @param name 客服名称，不多于16个字符
    * @param media_id 客服头像临时素材
    */
-  async createAccount(name: string, media_id: string): PromiseResponse<{ openKfid: string }> {
+  async createAccount(
+    name: string,
+    media_id: string
+  ): PromiseResponse<{ openKfid: string }> {
     const access_token = await this.getToken()
-    return await this.bin.post('/cgi-bin/kf/account/add', { name, media_id }, { access_token })
+    return await this.bin.post(
+      '/cgi-bin/kf/account/add',
+      { name, media_id },
+      { access_token }
+    )
   }
 
   /**
@@ -106,7 +113,11 @@ export class WxWorkKefuService extends WxWorkServiceAuth {
    */
   async removeAccount(open_kfid: string): PromiseResponse {
     const access_token = await this.getToken()
-    return await this.bin.post('/cgi-bin/kf/account/del', { open_kfid }, { access_token })
+    return await this.bin.post(
+      '/cgi-bin/kf/account/del',
+      { open_kfid },
+      { access_token }
+    )
   }
 
   /**
@@ -117,9 +128,17 @@ export class WxWorkKefuService extends WxWorkServiceAuth {
    * @param name 新的客服名称，如不需要修改可不填。不多于16个字符
    * @param media_id 新的客服头像临时素材，如不需要修改可不填
    */
-  async updateAccount(open_kfid: string, name?: string, media_id?: string): PromiseResponse {
+  async updateAccount(
+    open_kfid: string,
+    name?: string,
+    media_id?: string
+  ): PromiseResponse {
     const access_token = await this.getToken()
-    return await this.bin.post('/cgi-bin/kf/account/update', { open_kfid, name, media_id }, { access_token })
+    return await this.bin.post(
+      '/cgi-bin/kf/account/update',
+      { open_kfid, name, media_id },
+      { access_token }
+    )
   }
 
   /**
@@ -139,9 +158,16 @@ export class WxWorkKefuService extends WxWorkServiceAuth {
    * @param open_kfid 客服帐号ID
    * @param scene 场景值，字符串类型，由开发者自定义。不多于32字节
    */
-  async addContactWay(open_kfid: string, scene?: string): PromiseResponse<{ url: string }> {
+  async addContactWay(
+    open_kfid: string,
+    scene?: string
+  ): PromiseResponse<{ url: string }> {
     const access_token = await this.getToken()
-    return await this.bin.post('/cgi-bin/kf/add_contact_way', { open_kfid, scene }, { access_token })
+    return await this.bin.post(
+      '/cgi-bin/kf/add_contact_way',
+      { open_kfid, scene },
+      { access_token }
+    )
   }
 
   /**
@@ -152,9 +178,18 @@ export class WxWorkKefuService extends WxWorkServiceAuth {
    * @param userid_list 接待人员userid列表。可填充个数：1 ~ 100。超过100个需分批调用
    * @returns
    */
-  async addServicer(open_kfid: string, userid_list: string[]): PromiseResponse<{ result_list: Array<{ userid: string } & ResponseError> }> {
+  async addServicer(
+    open_kfid: string,
+    userid_list: string[]
+  ): PromiseResponse<{
+    result_list: Array<{ userid: string } & ResponseError>
+  }> {
     const access_token = await this.getToken()
-    return await this.bin.post('/cgi-bin/kf/servicer/add', { open_kfid, userid_list }, { access_token })
+    return await this.bin.post(
+      '/cgi-bin/kf/servicer/add',
+      { open_kfid, userid_list },
+      { access_token }
+    )
   }
 
   /**
@@ -165,9 +200,18 @@ export class WxWorkKefuService extends WxWorkServiceAuth {
    * @param userid_list 接待人员userid列表。可填充个数：1 ~ 100。超过100个需分批调用
    * @returns
    */
-  async deleteServicer(open_kfid: string, userid_list: string[]): PromiseResponse<{ result_list: Array<{ userid: string } & ResponseError> }> {
+  async deleteServicer(
+    open_kfid: string,
+    userid_list: string[]
+  ): PromiseResponse<{
+    result_list: Array<{ userid: string } & ResponseError>
+  }> {
     const access_token = await this.getToken()
-    return await this.bin.post('/cgi-bin/kf/servicer/del', { open_kfid, userid_list }, { access_token })
+    return await this.bin.post(
+      '/cgi-bin/kf/servicer/del',
+      { open_kfid, userid_list },
+      { access_token }
+    )
   }
 
   /**
@@ -176,9 +220,16 @@ export class WxWorkKefuService extends WxWorkServiceAuth {
    * https://work.weixin.qq.com/api/doc/90000/90135/94645
    * @param open_kfid 客服帐号ID
    */
-  async getServicerList(open_kfid: string): PromiseResponse<{ servicerList: Array<{ userid: string; status: number }> }> {
+  async getServicerList(
+    open_kfid: string
+  ): PromiseResponse<{
+    servicerList: Array<{ userid: string; status: number }>
+  }> {
     const access_token = await this.getToken()
-    return await this.bin.get('/cgi-bin/kf/servicer/list', { access_token, open_kfid })
+    return await this.bin.get('/cgi-bin/kf/servicer/list', {
+      access_token,
+      open_kfid,
+    })
   }
 
   /**
@@ -187,9 +238,18 @@ export class WxWorkKefuService extends WxWorkServiceAuth {
    * @param open_kfid 客服帐号ID
    * @param external_userid 微信客户的external_userid
    */
-  async getServiceState(open_kfid: string, external_userid: string): PromiseResponse<{ servicerList: Array<{ userid: string; status: number }> }> {
+  async getServiceState(
+    open_kfid: string,
+    external_userid: string
+  ): PromiseResponse<{
+    servicerList: Array<{ userid: string; status: number }>
+  }> {
     const access_token = await this.getToken()
-    return await this.bin.post('/cgi-bin/kf/service_state/get', { open_kfid, external_userid }, { access_token })
+    return await this.bin.post(
+      '/cgi-bin/kf/service_state/get',
+      { open_kfid, external_userid },
+      { access_token }
+    )
   }
 
   /**
@@ -201,9 +261,18 @@ export class WxWorkKefuService extends WxWorkServiceAuth {
    * @param servicer_userid 接待人员的userid，当state=3时要求必填，接待人员须处于“正在接待”中
    * @returns
    */
-  async updateServiceState(open_kfid: string, external_userid: string, service_state: 1 | 2 | 3 | 4, servicer_userid?: string): PromiseResponse {
+  async updateServiceState(
+    open_kfid: string,
+    external_userid: string,
+    service_state: 1 | 2 | 3 | 4,
+    servicer_userid?: string
+  ): PromiseResponse {
     const access_token = await this.getToken()
-    return await this.bin.post('/cgi-bin/kf/service_state/trans', { open_kfid, external_userid, service_state, servicer_userid }, { access_token })
+    return await this.bin.post(
+      '/cgi-bin/kf/service_state/trans',
+      { open_kfid, external_userid, service_state, servicer_userid },
+      { access_token }
+    )
   }
 
   /**
@@ -215,8 +284,20 @@ export class WxWorkKefuService extends WxWorkServiceAuth {
    * @param token 回调事件返回的token字段，10分钟内有效；可不填，如果不填接口有严格的频率限制
    * @param limit 期望请求的数据量，默认值和最大值都为1000
    */
-  async syncMessage(cursor?: string, token?: string, limit?: number): PromiseResponse<{ nextCursor: string; hasMore: number; messageList: Message[] }> {
+  async syncMessage(
+    cursor?: string,
+    token?: string,
+    limit?: number
+  ): PromiseResponse<{
+    nextCursor: string
+    hasMore: number
+    messageList: Message[]
+  }> {
     const access_token = await this.getToken()
-    return await this.bin.post('/cgi-bin/kf/sync_msg', { cursor, token, limit }, { access_token })
+    return await this.bin.post(
+      '/cgi-bin/kf/sync_msg',
+      { cursor, token, limit },
+      { access_token }
+    )
   }
 }

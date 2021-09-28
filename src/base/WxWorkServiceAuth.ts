@@ -15,15 +15,25 @@ export class WxWorkServiceAuth extends WxWorkService {
   }
 
   // 上传临时素材
-  async uploadMedia(filepath: string, type: 'image' | 'voice' | 'video' | 'file'): Promise<{ type: string; mediaId: string; createdAt: string }> {
+  async uploadMedia(
+    filepath: string,
+    type: 'image' | 'voice' | 'video' | 'file'
+  ): Promise<{ type: string; mediaId: string; createdAt: string }> {
     const { data, headers } = this.bin.parseUploadFile(filepath, 'media')
     const access_token = await this.getToken()
-    return await this.bin.post('/cgi-bin/media/upload', data, { access_token, type }, { headers })
+    return await this.bin.post(
+      '/cgi-bin/media/upload',
+      data,
+      { access_token, type },
+      { headers }
+    )
   }
 
   // 解密
   decrypt(encrypted: string) {
-    const aesKey = this.agent.aesKey ?? CoaError.message('WxWork.Missing', '缺少AesKey，无法解析数据')
+    const aesKey =
+      this.agent.aesKey ??
+      CoaError.message('WxWork.Missing', '缺少AesKey，无法解析数据')
     const { message } = decrypt(aesKey, encrypted)
     return message
   }
@@ -53,7 +63,10 @@ export class WxWorkServiceAuth extends WxWorkService {
   // 获取Token
   async getToken() {
     const cacheName = `WxWorkToken:${this.agent.corpId}:${this.agent.agentId}`
-    let result = (await this.bin.storage.get<WxWork.Token>(cacheName)) ?? { token: '', expire: 1 }
+    let result = (await this.bin.storage.get<WxWork.Token>(cacheName)) ?? {
+      token: '',
+      expire: 1,
+    }
     if (!result.token) {
       const param = { corpid: this.agent.corpId, corpsecret: this.agent.secret }
       const data = await this.bin.get('/cgi-bin/gettoken', param)
@@ -80,10 +93,14 @@ export class WxWorkServiceAuth extends WxWorkService {
   // 获取Ticket
   private async gain() {
     const cacheName = `WxWorkJsapiTicket:${this.agent.corpId}:${this.agent.agentId}`
-    let result = (await this.bin.storage.get<WxWork.JsapiTicket>(cacheName)) ?? { ticket: '', expire: 1 }
+    let result = (await this.bin.storage.get<WxWork.JsapiTicket>(
+      cacheName
+    )) ?? { ticket: '', expire: 1 }
     if (!result.ticket) {
       const access_token = await this.getToken()
-      const data = await this.bin.get('/cgi-bin/get_jsapi_ticket', { access_token })
+      const data = await this.bin.get('/cgi-bin/get_jsapi_ticket', {
+        access_token,
+      })
       const ms = _.toInteger(data.expiresIn) * 1e3 - 200 * 1e3
       const expire = _.now() + ms
       const ticket = (data.ticket as string) || ''

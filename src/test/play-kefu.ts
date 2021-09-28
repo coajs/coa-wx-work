@@ -40,7 +40,9 @@ $.run(async () => {
   console.log('contactWay', contactWay)
 
   // 添加接待人员
-  const addServicerResult = await service.addServicer(account.openKfid, [userId])
+  const addServicerResult = await service.addServicer(account.openKfid, [
+    userId,
+  ])
   console.log('addServicerResult', addServicerResult)
 
   // 获取接待人员列表
