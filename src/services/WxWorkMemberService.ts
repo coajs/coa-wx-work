@@ -52,10 +52,10 @@ export class WxWorkMemberService extends WxWorkServiceAuth {
   }
 
   // 通过ID获取用户 https://work.weixin.qq.com/api/doc/90000/90135/90196
-  async getUserById(id: number) {
+  async getUserById(userid: string) {
     const result = await this.bin.get('/cgi-bin/user/get', {
       access_token: await this.getToken(),
-      id,
+      userid,
     })
     return result as WxWork.User
   }
