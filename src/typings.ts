@@ -81,6 +81,16 @@ const resultUserList = {
     },
   ],
 }
+const resultGetUserList = {
+  errcode: 0,
+  errmsg: "ok",
+  dept_user: [
+    {
+      userid: "13530022094",
+      department: 2000490
+    },
+  ]
+}
 
 const resultUserInfoByCode = {
   errcode: 0,
@@ -237,6 +247,6 @@ export declare namespace WxWork {
   type CreateDepartmentResponse = typeof departmentResponse
   type DepartmentList = typeof departmentList
   type User = Partial<typeof user>
-
+  type getUserIdList = typeof resultGetUserList
   type MessageResponse = typeof messageResponse
 }

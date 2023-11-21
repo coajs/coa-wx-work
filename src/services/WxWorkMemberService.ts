@@ -51,6 +51,15 @@ export class WxWorkMemberService extends WxWorkServiceAuth {
     return result as WxWork.UserList
   }
 
+  // 获取部门成员详情 https://work.weixin.qq.com/api/doc/90000/90135/90201
+  async getUserIdList(cursor = '', limit = 10000) {
+    const result = await this.bin.post(
+      '/cgi-bin/user/list_id',
+      { cursor, limit },
+      { access_token: await this.getToken() }
+    )
+    return result as WxWork.getUserIdList
+  }
   // 通过ID获取用户 https://work.weixin.qq.com/api/doc/90000/90135/90196
   async getUserById(userid: string) {
     const result = await this.bin.get('/cgi-bin/user/get', {
