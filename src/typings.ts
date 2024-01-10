@@ -294,8 +294,6 @@ export declare namespace WxWork {
     secret: string
     token?: string
     aesKey?: string
-    suiteId?: string
-    suiteSecret?: string
   }
 
   type Token = typeof token
