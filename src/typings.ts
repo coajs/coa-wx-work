@@ -286,6 +286,8 @@ export declare namespace WxWork {
   interface Suite {
     suiteId: string
     suiteSecret: string
+    token?: string
+    aesKey?: string
   }
 
   interface Agent {
