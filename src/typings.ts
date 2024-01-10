@@ -2,6 +2,69 @@ const token = { token: '', expire: 1 }
 
 const jsapiTicket = { ticket: '', expire: 1 }
 
+const suiteToken = { suite_token: '', expire: 1 }
+
+const authInfo = {
+  accessToken: 'OprPeJ0zZiLxdKHCDUcw5ZYIpldZxkzivfFJSxZqeB2rqGIoBUEAEQIsGfbALi3I-pQF4vleTyWjXO6Pv-2tJSfGxWNIxeHkSgWyzFIH7kK6E-MgtBrOrawAScEpXGe_VAjVztFN2Px0jOpP_VuADqDkvnr-_31HfDWUl1UB6DBva5DfBidCzoEbx9DakmI2Dbe7_3fz50H24TG7BOsiLA',
+  expiresIn: 7200,
+  permanentCode: 'lETKz6zQCqDAN0Vj9jeZaNPgHGAsD-6db5wK3oha7x4',
+  authCorpInfo: {
+    corpid: 'wwc2bf51dac7d825b1',
+    corpName: '钦轩科技',
+    corpType: 'verified',
+    corpRoundLogoUrl: 'https://wework.qpic.cn/wwpic/878908_KAswQ4kNTwCamS6_1637914211/0',
+    corpSquareLogoUrl: 'https://p.qlogo.cn/bizmail/2wXFvYxRlWK1hRM7icGGnJDHQaibUOv0LSrDWkg4EnTvNxFSIZ4ic9fDQ/0',
+    corpUserMax: 1000,
+    corpWxqrcode: 'https://wework.qpic.cn/wwpic/64301_sJwvKc93TnGxJXh_1699412828/0',
+    corpFullName: '钦轩科技',
+    subjectType: 1,
+    verifiedEndTime: 1728634926,
+    corpScale: '201-500人',
+    corpIndustry: 'IT服务',
+    corpSubIndustry: '计算机软件/硬件/信息服务',
+    location: '',
+  },
+  authInfo: {
+    agent: [
+      {
+        agentid: 1000072,
+        name: '钦家客服助手',
+        squareLogoUrl: 'https://wework.qpic.cn/wwpic/746814_VzFGqM_xRNyt1oi_1698129937/0',
+        privilege: {
+          level: 1,
+          allowParty: [9],
+          allowUser: [],
+          allowTag: [],
+          extraParty: [],
+          extraUser: [],
+          extraTag: [],
+        },
+        authMode: 0,
+        isCustomizedApp: false,
+      },
+    ],
+  },
+  authUserInfo: {
+    userid: 'hope.gao@mm-iworld.com',
+    name: 'woa1qMDgAAHJzzNAngzsA0mRKs3BEm3A',
+    avatar: 'https://rescdn.qqmail.com/node/wwmng/wwmng/style/images/independent/DefaultAvatar$73ba92b5.png',
+    openUserid: 'woa1qMDgAAHJzzNAngzsA0mRKs3BEm3A',
+  },
+  editionInfo: {
+    agent: [
+      {
+        agentid: 1000072,
+        editionId: 'spd16ca634caea52b0',
+        editionName: '基础版',
+        appStatus: 1,
+        userLimit: 4294967295,
+        expiredTime: 1700033474,
+        isVirtualVersion: false,
+      },
+    ],
+  },
+}
+
 const resultUserList = {
   errcode: 0,
   errmsg: 'ok',
@@ -224,9 +287,17 @@ const messageResponse = {
   invalidtag: 'tagid1|tagid2',
 }
 
+
 export declare namespace WxWork {
   interface Dic<T = any> {
     [index: string]: T
+  }
+
+  interface Suite {
+    suiteId: string
+    suiteSecret: string
+    token?: string
+    aesKey?: string
   }
 
   interface Agent {
@@ -239,6 +310,8 @@ export declare namespace WxWork {
 
   type Token = typeof token
   type JsapiTicket = typeof jsapiTicket
+  type SuiteToken = typeof suiteToken
+  type AuthInfo = typeof authInfo
   type UserList = typeof resultUserList
   type UserInfoByCode = typeof resultUserInfoByCode
   type NormalResponse = typeof normalResponse
