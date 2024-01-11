@@ -30,13 +30,8 @@ export class WxWorkTicketService extends WxWorkTokenService {
     return result.token
   }
 
-  // 获取Ticket对象
+  // 获取Agent Ticket对象
   async gainAgentTicket(authCorpId: string, permanentCode: string) {
-    return await this.gain(authCorpId, permanentCode)
-  }
-
-  // 获取Agent Ticket
-  private async gain(authCorpId: string, permanentCode: string) {
     const cacheName = `WxWorkAgentJsapiTicket:${this.suite.suiteId}:${authCorpId}:${permanentCode}`
     let result = (await this.bin.storage.get<WxWork.JsapiTicket>(cacheName)) ?? { ticket: '', expire: 1 }
     if (!result.ticket) {
@@ -53,13 +48,8 @@ export class WxWorkTicketService extends WxWorkTokenService {
     return result
   }
 
-  // 获取Ticket对象
+  // 获取Corp Ticket对象
   async gainCorpTicket(authCorpId: string, permanentCode: string) {
-    return await this.gain2(authCorpId, permanentCode)
-  }
-
-  // 获取Corp Ticket
-  private async gain2(authCorpId: string, permanentCode: string) {
     const cacheName = `WxWorkCorpJsapiTicket:${this.suite.suiteId}:${authCorpId}:${permanentCode}`
     let result = (await this.bin.storage.get<WxWork.JsapiTicket>(cacheName)) ?? { ticket: '', expire: 1 }
     if (!result.ticket) {
