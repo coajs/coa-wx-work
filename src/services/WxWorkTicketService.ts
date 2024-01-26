@@ -66,7 +66,7 @@ export class WxWorkTicketService extends WxWorkTokenService {
   }
 
   // unionid与external_userid的关联 https://developer.work.weixin.qq.com/document/path/95900
-  async getExternalUserId(authCorpId: string, permanentCode: string, unionId: string, openId: string) {
-    return await this.bin.post('/cgi-bin/idconvert/unionid_to_external_userid', { unionid: unionId, openid: openId, subject_type: 1 }, { access_token: await this.getCorpToken(authCorpId, permanentCode) })
+  async getExternalUserId(authCorpId: string, permanentCode: string, unionId: string, openId: string, subjectType = 0) {
+    return await this.bin.post('/cgi-bin/idconvert/unionid_to_external_userid', { unionid: unionId, openid: openId, subject_type: subjectType }, { access_token: await this.getCorpToken(authCorpId, permanentCode) })
   }
 }
