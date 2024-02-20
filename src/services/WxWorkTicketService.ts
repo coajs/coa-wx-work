@@ -69,4 +69,9 @@ export class WxWorkTicketService extends WxWorkTokenService {
   async getExternalUserId(authCorpId: string, permanentCode: string, unionId: string, openId: string, subjectType = 0) {
     return await this.bin.post('/cgi-bin/idconvert/unionid_to_external_userid', { unionid: unionId, openid: openId, subject_type: subjectType }, { access_token: await this.getCorpToken(authCorpId, permanentCode) })
   }
+
+  // external_userid查询pending_id
+  async getPendingId(authCorpId: string, permanentCode: string, externalUserId: string[]) {
+    return await this.bin.post('/cgi-bin/idconvert/batch/external_userid_to_pending_id', { external_userid: externalUserId }, { access_token: await this.getCorpToken(authCorpId, permanentCode) })
+  }
 }
