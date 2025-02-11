@@ -42,7 +42,7 @@ export class WxWorkMemberService extends WxWorkServiceAuth {
   }
 
   // 获取部门成员 https://work.weixin.qq.com/api/doc/90000/90135/90200
-  async getSimplelist(departmentId: string) {
+  async getSimplelist(departmentId: number) {
     return await this.bin.get('cgi-bin/user/simplelist', {
       access_token: await this.getToken(),
       department_id: departmentId,

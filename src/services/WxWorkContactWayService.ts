@@ -2,10 +2,10 @@ import { WxWorkServiceAuth } from '../base/WxWorkServiceAuth'
 
 // https://developer.work.weixin.qq.com/document/path/92228
 export class WxWorkContactWayService extends WxWorkServiceAuth {
-  async create(type: number, scene: number, remark: string, state: string, user: string[]) {
+  async create({ type, scene, state, user, remark }: { type: number, scene: number, state: string, user: string[], remark: string }) {
     return await this.bin.post(
       'cgi-bin/externalcontact/add_contact_way',
-      { type, scene, remark, state, user },
+      { type, scene, state, user, remark },
       { access_token: await this.getToken() })
   }
 
@@ -30,7 +30,7 @@ export class WxWorkContactWayService extends WxWorkServiceAuth {
       { access_token: await this.getToken() })
   }
 
-  async update(configId: string, remark: string, state: string, user: string[]) {
+  async update(configId: string, { state, user, remark }: { state: string, user: string[], remark: string }) {
     return await this.bin.post(
       'cgi-bin/externalcontact/update_contact_way',
       { config_id: configId, remark, state, user },
