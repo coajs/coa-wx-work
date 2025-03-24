@@ -3,33 +3,6 @@ import { WxWork } from '../typings'
 import { WxWorkTokenService } from './WxWorkTokenService'
 
 export class WxWorkKefuSuiteService extends WxWorkTokenService {
-  // 获取Token
-  async getCorpToken(authCorpId: string, permanentCode: string) {
-    const cacheName = `WxWorkCorpToken:${this.suite.suiteId}:${authCorpId}:${permanentCode}`
-    let result = (await this.bin.storage.get<WxWork.Token>(cacheName)) ?? {
-      token: '',
-      expire: 1,
-    }
-    if (!result.token) {
-      const data = await this.bin.post(
-        '/cgi-bin/service/get_corp_token',
-        {
-          auth_corpid: authCorpId,
-          permanent_code: permanentCode,
-        },
-        {
-          suite_access_token: await this.getSuiteToken(),
-        }
-      )
-      const ms = _.toInteger(data.expiresIn) * 1e3 - 200 * 1e3
-      const expire = _.now() + ms
-      const token = (data.accessToken as string) || ''
-      result = { expire, token }
-      await this.bin.storage.set(cacheName, result, ms)
-    }
-    return result.token
-  }
-
   // 微信客服添加客服账号 https://developer.work.weixin.qq.com/document/path/96404
   async addAccount(authCorpId: string, permanentCode: string, name: string, mediaId: string) {
     return await this.bin.post('/cgi-bin/kf/account/add', {

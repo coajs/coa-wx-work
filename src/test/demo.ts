@@ -1,76 +1,35 @@
 // @ts-nocheck
-import { WxWorkBin, WxWorkDepartmentService, WxWorkMemberService, WxWorkKefuSuiteService } from '..'
+import { WxWorkBin, WxWorkDepartmentService, WxWorkMemberService } from '..'
 
 // Bin实例，任何服务都必须依赖此实例
 const bin = new WxWorkBin()
 
-// // 定义一个agent配置
-// const agent = {
-//   corpId: 'wwc2bf51eeeeeee825b1',
-//   agentId: '1000001',
-//   secret: 'J1jxD5X3eXXXXXXXXXXXXIAHvawDRU4',
-// }
-// // 成员类服务
-// const memberService = new WxWorkMemberService(bin, agent)
-//
-// // 获取成员列表
-// await memberService.getList()
-// // 创建成员
-// await memberService.create({ userid: 'u0001', name: 'AAA' })
-// // 更新成员
-// await memberService.update('u0001', { name: 'AAAAA' })
-// // 删除成员
-// await memberService.delete(['u0001'])
-//
-// // 部门类服务
-// const departmentService = new WxWorkDepartmentService(bin, agent)
-//
-// // 获取部门列表
-// await departmentService.getList()
-// // 创建部门
-// await departmentService.create({ id: 1, name: 'DeptA' })
-// // 更新部门
-// await departmentService.update(1, { name: 'DeptAA' })
-// // 删除部门
-// await departmentService.delete(1)
-
-
-const suite = {
-    authHost: 'xxxx',
-    kefuSuite: { suiteId: 'xxx', suiteSecret: 'xxx', token: 'xxx', aeskey: 'xxx' },
+// 定义一个agent配置
+const agent = {
+  corpId: 'wwc2bf51eeeeeee825b1',
+  agentId: '1000001',
+  secret: 'J1jxD5X3eXXXXXXXXXXXXIAHvawDRU4',
 }
+// 成员类服务
+const memberService = new WxWorkMemberService(bin, agent)
 
-const wxWorkKefuSuiteService = new WxWorkKefuSuiteService(bin, suite.kefuSuite)
+// 获取成员列表
+await memberService.getList()
+// 创建成员
+await memberService.create({ userid: 'u0001', name: 'AAA' })
+// 更新成员
+await memberService.update('u0001', { name: 'AAAAA' })
+// 删除成员
+await memberService.delete(['u0001'])
 
-// const res = wxWorkKefuSuiteService.getMedia('wwc2xxxxx825b1','WxxxxE','xxxxx')
-// console.log(res.then(
-//     (res)=>{
-//       console.log(res)
-//     }
-// ))
+// 部门类服务
+const departmentService = new WxWorkDepartmentService(bin, agent)
 
-// const res =  wxWorkKefuSuiteService.syncMsg('wwc2xxxxx825b1','WxxxxE','xxxxx')
-// console.log(res.then(
-//     (res)=>{
-//       console.log(444)
-//       console.log(res)
-//         for (const item of res.msgList) {
-//           if(item.origin===3){
-//             console.log(item.text || item.image)
-//           }
-//           if(item.origin===4){
-//             console.log(item.event)
-//           }
-//         }
-//     }
-// ))
-
-// const res = wxWorkKefuSuiteService.sendMsg('wwc2xxxxx825b1','WxxxxE','xxxxx','xxxx-JVpDZCQ','image',{image:{media_id:'xxx-xxx-xxx-xxx-xxx'}})
-// console.log(res.then(
-//     (res)=>{
-//       console.log(444)
-//       console.log(res)
-//     }
-// ))
-
-
+// 获取部门列表
+await departmentService.getList()
+// 创建部门
+await departmentService.create({ id: 1, name: 'DeptA' })
+// 更新部门
+await departmentService.update(1, { name: 'DeptAA' })
+// 删除部门
+await departmentService.delete(1)
