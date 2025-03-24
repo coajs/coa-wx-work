@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { WxWorkBin, WxWorkDepartmentService, WxWorkMemberService, WxWorkTicketService } from '..'
+import { WxWorkBin, WxWorkDepartmentService, WxWorkMemberService, WxWorkKefuSuiteService } from '..'
 
 // Bin实例，任何服务都必须依赖此实例
 const bin = new WxWorkBin()
@@ -36,36 +36,36 @@ const bin = new WxWorkBin()
 
 
 const suite = {
-    authHost: 'https://t1.isus.vip',
-    kefuSuite: { suiteId: 'wwccxxxxxea6d', suiteSecret: 'DSDIbUWFMxxxxxx8uji_lquUI', token: 'EoAmvc1xxxxxt7YbzG', aeskey: 'RqcDofxxxxx4wqM' },
+    authHost: 'xxxx',
+    kefuSuite: { suiteId: 'xxx', suiteSecret: 'xxx', token: 'xxx', aeskey: 'xxx' },
 }
 
-const wxWorkTicketService = new WxWorkTicketService(bin, suite.kefuSuite)
+const wxWorkKefuSuiteService = new WxWorkKefuSuiteService(bin, suite.kefuSuite)
 
-// const res = wxWorkTicketService.getMedia('wwc2xxxxx5b1','WFVR0kxxxxxxxY8bXQAE','1Nk3GcoO88lDNO69eVJE7KEbp1Of-3sHtFzjGaXXXfm_zAikph0Y07WUc-b5DXVmicZE-8uIZQPAy5Px-Oozd9w')
+// const res = wxWorkKefuSuiteService.getMedia('wwc2xxxxx825b1','WxxxxE','xxxxx')
 // console.log(res.then(
 //     (res)=>{
 //       console.log(res)
 //     }
 // ))
 
-const res =  wxWorkTicketService.syncMsg('wwc2xxxxx5b1','WFVR0kxxxxxxxY8bXQAE','wka1qMxxxxxx2qxl0mQ')
-console.log(res.then(
-    (res)=>{
-      console.log(444)
-      console.log(res)
-        for (const item of res.msgList) {
-          if(item.origin===3){
-            console.log(item.text || item.image)
-          }
-          if(item.origin===4){
-            console.log(item.event)
-          }
-        }
-    }
-))
+// const res =  wxWorkKefuSuiteService.syncMsg('wwc2xxxxx825b1','WxxxxE','xxxxx')
+// console.log(res.then(
+//     (res)=>{
+//       console.log(444)
+//       console.log(res)
+//         for (const item of res.msgList) {
+//           if(item.origin===3){
+//             console.log(item.text || item.image)
+//           }
+//           if(item.origin===4){
+//             console.log(item.event)
+//           }
+//         }
+//     }
+// ))
 
-// const res = wxWorkTicketService.sendMsg('wwc2xxxxx5b1','WFVR0kxxxxxxxY8bXQAE','wka1qMxxxxxx2qxl0mQ','wma1qMDgAAKGpqdfHP6pTxnH-JVpDZCQ','image',{image:{media_id:'1Nk3GcoO88lDNO69eVJE7KEbp1Of-3sHtFzjGaXXXfm_zAikph0Y07WUc-b5DXVmicZE-8uIZQPAy5Px-Oozd9w'}})
+// const res = wxWorkKefuSuiteService.sendMsg('wwc2xxxxx825b1','WxxxxE','xxxxx','xxxx-JVpDZCQ','image',{image:{media_id:'xxx-xxx-xxx-xxx-xxx'}})
 // console.log(res.then(
 //     (res)=>{
 //       console.log(444)
