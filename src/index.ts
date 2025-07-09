@@ -7,7 +7,6 @@ export * from './libs/WxWorkStorage'
 // services
 export * from './services/WxWorkAuthService'
 export * from './services/WxWorkBotService'
-export * from './services/WxWorkContactWayService'
 export * from './services/WxWorkDepartmentService'
 export * from './services/WxWorkExternalContactService'
 export * from './services/WxWorkGroupService'
